@@ -3,201 +3,150 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Rudy Campaign Tools</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%277%27 fill=%27%2313294b%27/%3E%3Cpath d=%27M16 5l3.2 6.6 7.3 1-5.3 5.1 1.3 7.2L16 21.5l-6.5 3.4 1.3-7.2-5.3-5.1 7.3-1z%27 fill=%27%23c99a3b%27/%3E%3C/svg%3E">
+<title>IN-02 Team Tools</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%275%27 fill=%27%23b3202b%27/%3E%3Cpath d=%27M16 6l2.9 6 6.6.9-4.8 4.6 1.2 6.5L16 20.9 10.1 24l1.2-6.5-4.8-4.6 6.6-.9z%27 fill=%27%23fff%27/%3E%3C/svg%3E">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&display=swap">
 <style>
-/* Layout: tall navy masthead with a faint whip-count motif; tool cards overlap its bottom edge. Matches the Guidant Tools hub. */
+/* Layout: compact slate header with a campaign-bunting stripe and a countdown block; tools grouped by when you use them, in 3-up rows. */
 :root{
-  --bg:#eef1f6; --panel:#ffffff; --ink:#14223b; --muted:#5a6579; --line:#dbe1ea; --soft:#f5f7fb;
-  --navy:#13294b; --navy-2:#1e3d6b; --on-navy:#f3f6fb; --on-navy-muted:#b6c4da;
-  --gold:#c99a3b; --blue:#3c6aa3; --on-gold:#1b1404;
+  /* HQ whip board palette */
+  --bg:#F6F3EC; --panel:#FFFFFF; --ink:#16202C; --muted:#5D6B7A; --line:#E4DDCF; --soft:#FDF8EC;
+  --slate:#0D1B2A; --slate-2:#102A43; --on-slate:#FFFFFF; --on-slate-muted:#C6D0E0;
+  --red:#C00000; --red-ink:#B3261E; --red-soft:#FFF0EB; --red-head:#C8A44D; --blue:#1B3A5B; --gold:#C8A44D; --green:#2F6B4F;
+  --f-display:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
   --f-body:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:light;
 }
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --bg:#0c1320; --panel:#141e2f; --ink:#e7ecf4; --muted:#9aa7bb; --line:#26334a; --soft:#18243a;
-  --navy:#0f2140; --navy-2:#173159; --on-navy:#eef3fa; --on-navy-muted:#a7b6cd;
-  --gold:#ddb35e; --blue:#79a3d3; color-scheme:dark}}
-:root[data-theme="dark"]{
-  --bg:#0c1320; --panel:#141e2f; --ink:#e7ecf4; --muted:#9aa7bb; --line:#26334a; --soft:#18243a;
-  --navy:#0f2140; --navy-2:#173159; --on-navy:#eef3fa; --on-navy-muted:#a7b6cd;
-  --gold:#ddb35e; --blue:#79a3d3; color-scheme:dark}
 *{box-sizing:border-box}
-body{background:var(--bg);color:var(--ink);font:15px/1.55 var(--f-body);min-height:100vh;display:flex;flex-direction:column;margin:0}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.55 var(--f-body);min-height:100vh;display:flex;flex-direction:column}
 .pad{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-.inner{max-width:1100px;margin:0 auto}
-.mast{background:radial-gradient(120% 140% at 85% 10%,var(--navy-2) 0%,var(--navy) 60%);color:var(--on-navy);
-  padding-block:56px 120px;position:relative;overflow:hidden}
-.mast::before{content:"";position:absolute;inset:0;pointer-events:none;
-  background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);
-  background-size:32px 32px;mask-image:linear-gradient(90deg,transparent 20%,#000 75%)}
-.motif{position:absolute;right:max(20px,6vw);bottom:104px;width:min(360px,36vw);height:auto;pointer-events:none}
-.mast .inner{position:relative;z-index:1}
-.mark{display:flex;align-items:center;gap:12px;margin-bottom:22px}
-.mark svg{width:40px;height:40px}
-.mark span{font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
-h1{font-size:clamp(34px,5vw,52px);line-height:1.05;margin:0;font-weight:800;letter-spacing:-.025em;text-wrap:balance}
-h1 em{font-style:normal;color:var(--gold)}
-.lede{margin:14px 0 0;color:var(--on-navy-muted);font-size:17px;max-width:46ch}
-.eday{display:inline-flex;align-items:center;gap:8px;margin-top:18px;font-size:13px;font-weight:600;color:var(--on-navy);
-  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);padding:5px 12px;border-radius:999px;font-variant-numeric:tabular-nums}
-.eday b{color:var(--gold)}
-main{flex:1}
-.tools{margin-top:-80px;position:relative;z-index:2;padding-bottom:28px}
-.grid{display:grid;grid-template-columns:1fr;gap:18px}
-@media (min-width:640px){.grid{grid-template-columns:repeat(2,1fr)}}
-@media (min-width:960px){.grid{grid-template-columns:repeat(6,1fr)}.grid>a.tool{grid-column:span 2}
-  .grid>a.tool:nth-child(4):nth-last-child(2){grid-column:2/span 2}}
-a.tool{display:flex;flex-direction:column;background:var(--panel);border:1px solid var(--line);border-radius:16px;overflow:hidden;
-  text-decoration:none;color:inherit;box-shadow:0 18px 40px -24px rgba(10,25,50,.55);transition:transform .18s ease,box-shadow .18s ease,border-color .18s}
-a.tool:hover{transform:translateY(-3px);box-shadow:0 26px 48px -24px rgba(10,25,50,.65);border-color:var(--gold)}
-a.tool:focus-visible,.xviews a:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
-.top{position:relative;height:84px;background:linear-gradient(135deg,var(--navy-2),var(--navy))}
-.top svg.art{position:absolute;right:0;bottom:0;height:100%;width:auto}
-.ic{position:absolute;left:20px;bottom:-22px;width:46px;height:46px;border-radius:12px;background:var(--panel);
-  border:1px solid var(--line);display:grid;place-items:center;box-shadow:0 8px 18px -10px rgba(10,25,50,.6)}
-.ic svg{width:28px;height:28px}
-.body{padding:32px 20px 18px;display:flex;flex-direction:column;gap:8px;flex:1;min-width:0}
-h2{font-size:18px;margin:0;letter-spacing:-.01em}
-.body p{margin:0;color:var(--muted);font-size:14px;line-height:1.5}
-.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
-.chips span{font-size:11px;font-weight:600;padding:3px 9px;border-radius:999px;background:var(--soft);color:var(--muted);border:1px solid var(--line)}
-.go{margin-top:auto;padding-top:12px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--line)}
-.go b{font-weight:700;color:var(--blue);font-size:14px}
-.go i{font-style:normal;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--gold);color:var(--on-gold);font-weight:800;transition:transform .18s}
-a.tool:hover .go i{transform:translateX(3px)}
-.xviews{margin-top:22px;display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 18px}
-.xviews span{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
-.xviews a{font-weight:600;color:var(--blue);text-decoration:none;padding:4px 12px;border-radius:999px;border:1px solid var(--line);background:var(--soft)}
-.xviews a:hover{border-color:var(--gold)}
+.inner{max-width:1120px;margin:0 auto}
+
+header{background:linear-gradient(180deg,var(--slate-2),var(--slate));color:var(--on-slate)}
+header::after{content:"";display:block;height:10px;
+  background:linear-gradient(180deg,var(--gold) 0 4px,var(--slate) 4px 6px,var(--red) 6px 10px)}
+.head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:24px;padding-block:40px 34px}
+.eyebrow{display:flex;align-items:center;gap:10px;font:700 12px/1 var(--f-display);letter-spacing:.16em;text-transform:uppercase;color:var(--on-slate-muted)}
+.eyebrow svg{width:20px;height:20px;fill:var(--gold)}
+.eyebrow b{color:var(--on-slate);font-weight:700}
+h1{font:800 clamp(40px,6vw,64px)/1 var(--f-display);letter-spacing:-.03em;margin:14px 0 0}
+h1 span{color:var(--red-head)}
+.sub{margin:12px 0 0;color:var(--on-slate-muted);max-width:44ch}
+.count{display:flex;align-items:stretch;border:1px solid rgba(255,255,255,.16);border-radius:6px;overflow:hidden;background:rgba(255,255,255,.04)}
+.count .n{font:800 48px/1 var(--f-display);letter-spacing:-.03em;padding:12px 18px;background:var(--red);color:#fff;font-variant-numeric:tabular-nums;display:grid;place-items:center;min-width:88px}
+.count .l{padding:12px 18px;display:flex;flex-direction:column;justify-content:center;gap:2px}
+.count .l b{font:700 13px/1.2 var(--f-display);text-transform:uppercase;letter-spacing:.12em}
+.count .l small{color:var(--on-slate-muted);font-size:13px}
+
+main{flex:1;padding-block:36px 24px}
+section+section{margin-top:36px}
+.sec{display:flex;align-items:center;gap:14px;margin:0 0 16px}
+.sec h2{font:800 13px/1 var(--f-display);text-transform:uppercase;letter-spacing:.16em;margin:0;white-space:nowrap}
+.sec::after{content:"";flex:1;height:1px;background:var(--line);order:3}
+.sec small{font-size:13px;color:var(--muted);white-space:nowrap;order:4}
+.grid{display:grid;grid-template-columns:1fr;gap:16px}
+@media (min-width:680px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:980px){.grid{grid-template-columns:repeat(3,1fr)}}
+
+a.tool{display:flex;flex-direction:column;gap:12px;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:20px 20px 16px;
+  text-decoration:none;color:inherit;min-width:0;transition:border-color .15s,box-shadow .15s,transform .15s}
+a.tool:hover{border-color:var(--gold);box-shadow:0 10px 28px -18px rgba(20,24,32,.5);transform:translateY(-2px)}
+a.tool:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.th{display:flex;align-items:center;gap:14px}
+.ic{flex:none;width:44px;height:44px;border-radius:8px;background:var(--slate);color:var(--gold);display:grid;place-items:center}
+.ic svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+h3{font:700 19px/1.2 var(--f-display);letter-spacing:-.01em;margin:0}
+.tool p{margin:0;color:var(--muted);font-size:14.5px;line-height:1.5}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tags span{font-size:12px;font-weight:600;padding:2px 9px;border-radius:4px;background:var(--soft);color:var(--muted);border:1px solid var(--line)}
+.open{margin-top:auto;padding-top:12px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;
+  font:700 12px/1 var(--f-display);text-transform:uppercase;letter-spacing:.14em;color:var(--blue)}
+.open i{font-style:normal;color:var(--red-ink);font-size:18px;transition:transform .15s}
+a.tool:hover .open i{transform:translateX(4px)}
+
 footer{color:var(--muted);font-size:13px;padding-block:8px 32px}
-footer .inner{display:flex;flex-wrap:wrap;gap:6px 18px;justify-content:flex-end;border-top:1px solid var(--line);padding-top:16px}
-@media (max-width:640px){.motif{display:none}.mast{padding-block:40px 104px}}
-@media (prefers-reduced-motion:reduce){a.tool,.go i{transition:none}a.tool:hover{transform:none}}
+footer .inner{display:flex;flex-wrap:wrap;gap:6px 18px;justify-content:space-between;border-top:1px solid var(--line);padding-top:16px}
+@media (max-width:560px){.count .n{font-size:44px;min-width:72px}.head{padding-block:30px 26px}.sec small{display:none}}
+@media (prefers-reduced-motion:reduce){a.tool,.open i{transition:none}a.tool:hover{transform:none}}
 </style>
 </head>
 <body>
 
-<header class="mast pad">
-  <svg class="motif" viewBox="0 0 420 180" aria-hidden="true">
-    <g fill="#ffffff" opacity=".07">
-      <rect x="0" y="20" width="420" height="22" rx="11"/><rect x="0" y="62" width="420" height="22" rx="11"/>
-      <rect x="0" y="104" width="420" height="22" rx="11"/><rect x="0" y="146" width="420" height="22" rx="11"/>
-    </g>
-    <g fill="#c99a3b" opacity=".85">
-      <rect x="0" y="20" width="300" height="22" rx="11"/><rect x="0" y="62" width="250" height="22" rx="11"/>
-      <rect x="0" y="104" width="340" height="22" rx="11"/><rect x="0" y="146" width="210" height="22" rx="11"/>
-    </g>
-    <line x1="218" y1="6" x2="218" y2="176" stroke="#f3f6fb" stroke-width="2" stroke-dasharray="4 5" opacity=".6"/>
-  </svg>
-  <div class="inner">
-    <div class="mark">
-      <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="rgba(255,255,255,.1)"/><path d="M16 5l3.2 6.6 7.3 1-5.3 5.1 1.3 7.2L16 21.5l-6.5 3.4 1.3-7.2-5.3-5.1 7.3-1z" fill="#c99a3b"/></svg>
-      <span>Rudy for Indiana</span>
+<header>
+  <div class="pad"><div class="inner head">
+    <div>
+      <div class="eyebrow">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.8 5.8 6.3.9-4.6 4.4 1.1 6.3L12 16.9l-5.6 3 1.1-6.3-4.6-4.4 6.3-.9z"/></svg>
+        <span><b>Rudy for Indiana</b> · IN-02</span>
+      </div>
+      <h1>Team <span>Tools</span></h1>
+      <p class="sub">Everything the team runs on, from daily outreach to election night.</p>
     </div>
-    <h1>Campaign <em>Tools</em></h1>
-    <p class="lede">House outreach, the HQ board, workflow board and election night tools in one place.</p>
-    <div class="eday" id="eday">Election Day · <b>Tue, Nov 3</b></div>
-  </div>
+    <div class="count" id="count">
+      <div class="n" id="days">5</div>
+      <div class="l"><b id="lbl">Days to Election Day</b><small>Tuesday, November 3, 2026</small></div>
+    </div>
+  </div></div>
 </header>
 
-<main class="tools pad">
+<main class="pad">
   <div class="inner">
-    <div class="grid">
-      <a class="tool" href="https://claude.ai/artifact/1X4mkwaaQBx35uouTKAU9x?sk=BZG-6J3NhhoK5j_gfaWd3w">
-        <div class="top">
-          <svg class="art" viewBox="0 0 220 112" aria-hidden="true"><g transform="translate(46 18)" fill="#ffffff">
-            <g opacity=".14"><circle cx="12" cy="12" r="10"/><rect x="30" y="6" width="130" height="5" rx="2.5"/><rect x="30" y="15" width="84" height="4" rx="2"/></g>
-            <g opacity=".14"><circle cx="12" cy="40" r="10"/><rect x="30" y="34" width="110" height="5" rx="2.5"/><rect x="30" y="43" width="70" height="4" rx="2"/></g>
-            <g opacity=".14"><circle cx="12" cy="68" r="10"/><rect x="30" y="62" width="122" height="5" rx="2.5"/><rect x="30" y="71" width="92" height="4" rx="2"/></g>
-            <circle cx="12" cy="40" r="10" fill="#c99a3b"/></g></svg>
-          <span class="ic"><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#13294b"/><rect x="16" y="12" width="32" height="40" rx="4" fill="#f3f6fb"/><circle cx="32" cy="27" r="6" fill="#13294b"/><path d="M22 44c1.5-5.5 5.5-8 10-8s8.5 2.5 10 8z" fill="#13294b"/><rect x="12" y="18" width="6" height="4" rx="1.5" fill="#c99a3b"/><rect x="12" y="30" width="6" height="4" rx="1.5" fill="#c99a3b"/><rect x="12" y="42" width="6" height="4" rx="1.5" fill="#c99a3b"/></svg></span>
-        </div>
-        <div class="body">
-          <h2>House Outreach</h2>
+    <section>
+      <div class="sec"><h2>Every day</h2><small>Outreach, whip count and projects</small></div>
+      <div class="grid">
+        <a class="tool" href="https://claude.ai/artifact/1X4mkwaaQBx35uouTKAU9x?sk=BZG-6J3NhhoK5j_gfaWd3w">
+          <div class="th"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3" width="15" height="18" rx="2"/><circle cx="12.5" cy="10" r="2.6"/><path d="M8.5 17c.7-2.2 2.2-3.2 4-3.2s3.3 1 4 3.2M3 7h3M3 12h3M3 17h3"/></svg></span><h3>House Outreach</h3></div>
           <p>The 2026 contact directory for House members: their contacts, staff and who on the team owns each relationship.</p>
-          <div class="chips"><span>Contact directory</span><span>Staff contacts</span></div>
-          <div class="go"><b>Open House Outreach</b><i aria-hidden="true">→</i></div>
-        </div>
-      </a>
-
-      <a class="tool" href="https://app-eight-ashen-31.vercel.app/hq">
-        <div class="top">
-          <svg class="art" viewBox="0 0 220 112" aria-hidden="true"><g transform="translate(40 22)">
-            <rect x="0" y="0" width="170" height="14" rx="7" fill="#ffffff" opacity=".1"/><rect x="0" y="0" width="112" height="14" rx="7" fill="#c99a3b"/>
-            <rect x="0" y="26" width="170" height="14" rx="7" fill="#ffffff" opacity=".1"/><rect x="0" y="26" width="84" height="14" rx="7" fill="#7fa3cf" opacity=".75"/>
-            <rect x="0" y="52" width="170" height="14" rx="7" fill="#ffffff" opacity=".1"/><rect x="0" y="52" width="40" height="14" rx="7" fill="#c9d8ec" opacity=".55"/>
-            <line x1="86" y1="-6" x2="86" y2="72" stroke="#f3f6fb" stroke-width="2" stroke-dasharray="4 4" opacity=".6"/></g></svg>
-          <span class="ic"><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#13294b"/><rect x="12" y="14" width="40" height="36" rx="4" fill="#f3f6fb"/><path d="M19 25l3 3 6-6" stroke="#2f8a57" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/><rect x="32" y="23" width="14" height="4" rx="2" fill="#13294b"/><path d="M19 39l3 3 6-6" stroke="#c99a3b" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/><rect x="32" y="37" width="14" height="4" rx="2" fill="#13294b"/></svg></span>
-        </div>
-        <div class="body">
-          <h2>NRCC Chair HQ Board</h2>
+          <div class="tags"><span>Contact directory</span><span>Staff contacts</span></div>
+          <div class="open">Open <i aria-hidden="true">→</i></div>
+        </a>
+        <a class="tool" href="https://app-eight-ashen-31.vercel.app/hq">
+          <div class="th"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 9.5l1.6 1.6L11.5 8M7 15.5l1.6 1.6 2.9-3.1M14 10h4M14 16h4"/></svg></span><h3>NRCC Chair HQ Board</h3></div>
           <p>The whip count for the chair race: where every member stands, who's working them, and what's moved.</p>
-          <div class="chips"><span>Whip count</span><span>Captain assignments</span><span>HQ view</span></div>
-          <div class="go"><b>Open HQ Board</b><i aria-hidden="true">→</i></div>
-        </div>
-      </a>
-
-      <a class="tool" href="https://tjholden.github.io/Election-Tracker/">
-        <div class="top">
-          <svg class="art" viewBox="0 0 220 112" aria-hidden="true"><g transform="translate(46 18)" fill="#ffffff">
-            <g opacity=".14"><circle cx="12" cy="12" r="10"/><rect x="30" y="6" width="130" height="5" rx="2.5"/><rect x="30" y="15" width="84" height="4" rx="2"/></g>
-            <g opacity=".14"><circle cx="12" cy="40" r="10"/><rect x="30" y="34" width="110" height="5" rx="2.5"/><rect x="30" y="43" width="70" height="4" rx="2"/></g>
-            <g opacity=".14"><circle cx="12" cy="68" r="10"/><rect x="30" y="62" width="122" height="5" rx="2.5"/><rect x="30" y="71" width="92" height="4" rx="2"/></g>
-            <circle cx="12" cy="40" r="10" fill="#c99a3b"/></g></svg>
-          <span class="ic"><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#13294b"/><path d="M22 14c2 0 3 1 4 3l3 7c.6 1.6.2 3-1 4l-3 2c2 5 6 9 11 11l2-3c1-1.2 2.4-1.6 4-1l7 3c2 1 3 2 3 4v4c0 3-2 5-5 5C29 53 11 35 11 17c0-2 2-3 4-3z" fill="#f3f6fb"/><circle cx="46" cy="18" r="6" fill="#c99a3b"/></svg></span>
-        </div>
-        <div class="body">
-          <h2>Election Night Outreach Tracker</h2>
-          <p>Every House race and Republican candidate, who's been contacted, results as they're called, and shared team notes.</p>
-          <div class="chips"><span>Team sync</span><span>Message templates</span><span>CSV export</span></div>
-          <div class="go"><b>Open Election Night Tracker</b><i aria-hidden="true">→</i></div>
-        </div>
-      </a>
-
-      <a class="tool" href="https://tjholden.github.io/election-results/">
-        <div class="top">
-          <svg class="art" viewBox="0 0 220 112" aria-hidden="true"><g fill="#ffffff" opacity=".12"><rect x="40" y="58" width="22" height="54" rx="3"/><rect x="72" y="34" width="22" height="78" rx="3"/><rect x="104" y="46" width="22" height="66" rx="3"/><rect x="136" y="20" width="22" height="92" rx="3"/><rect x="168" y="38" width="22" height="74" rx="3"/></g><line x1="30" y1="44" x2="210" y2="44" stroke="#c99a3b" stroke-width="2" stroke-dasharray="5 5" opacity=".9"/><circle cx="147" cy="20" r="5" fill="#c99a3b"/></svg>
-          <span class="ic"><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#13294b"/><rect x="14" y="22" width="36" height="28" rx="3" fill="#f3f6fb"/><rect x="26" y="14" width="12" height="14" rx="2" fill="#c99a3b"/><rect x="22" y="20" width="20" height="4" rx="2" fill="#13294b"/><path d="M22 38l6 6 14-14" stroke="#13294b" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </div>
-        <div class="body">
-          <h2>Election Night Live Results</h2>
-          <p>Live House results on election night, tracked against our members and targets.</p>
-          <div class="chips"><span>Live results</span><span>Race calls</span><span>Nov 3</span></div>
-          <div class="go"><b>Open Live Results</b><i aria-hidden="true">→</i></div>
-        </div>
-      </a>
-
-      <a class="tool" href="https://tjholden.github.io/workflow-board/">
-        <div class="top">
-          <svg class="art" viewBox="0 0 220 112" aria-hidden="true"><g transform="translate(44 16)">
-            <g fill="#ffffff" opacity=".1"><rect x="0" y="0" width="50" height="84" rx="6"/><rect x="58" y="0" width="50" height="84" rx="6"/><rect x="116" y="0" width="50" height="84" rx="6"/></g>
-            <g fill="#ffffff" opacity=".22"><rect x="6" y="8" width="38" height="16" rx="3"/><rect x="6" y="30" width="38" height="16" rx="3"/><rect x="6" y="52" width="38" height="16" rx="3"/><rect x="64" y="8" width="38" height="16" rx="3"/><rect x="122" y="8" width="38" height="16" rx="3"/><rect x="122" y="30" width="38" height="16" rx="3"/></g>
-            <rect x="64" y="30" width="38" height="16" rx="3" fill="#c99a3b"/></g></svg>
-          <span class="ic"><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#13294b"/><rect x="11" y="14" width="12" height="36" rx="3" fill="#f3f6fb"/><rect x="26" y="14" width="12" height="24" rx="3" fill="#c99a3b"/><rect x="41" y="14" width="12" height="30" rx="3" fill="#f3f6fb" opacity=".85"/></svg></span>
-        </div>
-        <div class="body">
-          <h2>Workflow Board</h2>
+          <div class="tags"><span>Whip count</span><span>Captain assignments</span><span>HQ only</span></div>
+          <div class="open">Open <i aria-hidden="true">→</i></div>
+        </a>
+        <a class="tool" href="https://tjholden.github.io/workflow-board/">
+          <div class="th"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="5" height="16" rx="1.2"/><rect x="9.5" y="4" width="5" height="11" rx="1.2"/><rect x="16" y="4" width="5" height="13" rx="1.2"/></svg></span><h3>Workflow Board</h3></div>
           <p>Track data projects through each stage, with the people on every card, spreadsheet import and CSV or JSON backups.</p>
-          <div class="chips"><span>Stage columns</span><span>Swimlanes</span><span>CSV import/export</span></div>
-          <div class="go"><b>Open Workflow Board</b><i aria-hidden="true">→</i></div>
-        </div>
-      </a>
-    </div>
+          <div class="tags"><span>Stage columns</span><span>Swimlanes</span><span>CSV import/export</span></div>
+          <div class="open">Open <i aria-hidden="true">→</i></div>
+        </a>
+      </div>
+    </section>
+
+    <section>
+      <div class="sec"><h2>Election night</h2><small>Tuesday, Nov 3</small></div>
+      <div class="grid">
+        <a class="tool" href="https://tjholden.github.io/Election-Tracker/">
+          <div class="th"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 3.5h2.6l1.6 4.2-2 1.4a10.5 10.5 0 0 0 6.2 6.2l1.4-2 4.2 1.6v2.6a2 2 0 0 1-2 2A15.5 15.5 0 0 1 4.5 5.5a2 2 0 0 1 2-2z"/></svg></span><h3>Election Night Outreach Tracker</h3></div>
+          <p>Every House race and Republican candidate, who's been contacted, results as they're called, and shared team notes.</p>
+          <div class="tags"><span>Team sync</span><span>Message templates</span><span>CSV export</span></div>
+          <div class="open">Open <i aria-hidden="true">→</i></div>
+        </a>
+        <a class="tool" href="https://tjholden.github.io/election-results/">
+          <div class="th"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V11M9.3 20V6M14.6 20v-8M20 20V4M2.5 20h19"/></svg></span><h3>Election Night Live Results</h3></div>
+          <p>Live House results on election night, tracked against our members and targets.</p>
+          <div class="tags"><span>Live results</span><span>Race calls</span></div>
+          <div class="open">Open <i aria-hidden="true">→</i></div>
+        </a>
+      </div>
+    </section>
   </div>
 </main>
 
-<footer class="pad"><div class="inner"><span>Questions or ideas? Ask Tyler.</span></div></footer>
+<footer class="pad"><div class="inner"><span>Rudy for Indiana · Team Tools</span><span>Questions or ideas? Ask Tyler.</span></div></footer>
 
 <script>
 (function(){
-  var el=document.getElementById('eday'); if(!el) return;
+  var n=document.getElementById('days'), l=document.getElementById('lbl');
   var eday=new Date(2026,10,3), now=new Date(); now.setHours(0,0,0,0);
   var d=Math.round((eday-now)/864e5);
-  var b=el.querySelector('b');
-  if(d>1) b.textContent='Tue, Nov 3 · '+d+' days out';
-  else if(d===1) b.textContent='Tomorrow, Nov 3';
-  else if(d===0) b.textContent='Today';
+  if(d>1){n.textContent=d;l.textContent='Days to Election Day';}
+  else if(d===1){n.textContent='1';l.textContent='Day to Election Day';}
+  else if(d===0){n.textContent='★';l.textContent='Election Day is today';}
+  else{document.getElementById('count').hidden=true;}
 })();
 </script>
 </body>
