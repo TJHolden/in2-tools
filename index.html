@@ -86,7 +86,7 @@ footer .inner{display:flex;flex-wrap:wrap;gap:6px 18px;justify-content:space-bet
     </div>
     <div class="count" id="count">
       <div class="n" id="days">5</div>
-      <div class="l"><b id="lbl">Days to Election Day</b><small>Tuesday, November 3, 2026</small></div>
+      <div class="l"><b id="lbl">Days to Election Day</b><small>Tuesday, November 7, 2028</small></div>
     </div>
   </div></div>
 </header>
@@ -124,7 +124,7 @@ footer .inner{display:flex;flex-wrap:wrap;gap:6px 18px;justify-content:space-bet
     </section>
 
     <section>
-      <div class="sec"><h2>Election night &amp; workflow</h2><small>Tuesday, Nov 3 and ongoing projects</small></div>
+      <div class="sec"><h2>Election night &amp; workflow</h2><small>Tuesday, Nov 7 and ongoing projects</small></div>
       <div class="grid">
         <a class="tool" href="https://tjholden.github.io/Election-Tracker/">
           <div class="th"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 3.5h2.6l1.6 4.2-2 1.4a10.5 10.5 0 0 0 6.2 6.2l1.4-2 4.2 1.6v2.6a2 2 0 0 1-2 2A15.5 15.5 0 0 1 4.5 5.5a2 2 0 0 1 2-2z"/></svg></span><h3>Election Night Outreach Tracker</h3></div>
@@ -154,7 +154,7 @@ footer .inner{display:flex;flex-wrap:wrap;gap:6px 18px;justify-content:space-bet
 <script>
 (function(){
   var n=document.getElementById('days'), l=document.getElementById('lbl');
-  var eday=new Date(2026,10,3), now=new Date(); now.setHours(0,0,0,0);
+  var eday=new Date(2028,10,7), now=new Date(); now.setHours(0,0,0,0);
   var d=Math.round((eday-now)/864e5);
   if(d>1){n.textContent=d;l.textContent='Days to Election Day';}
   else if(d===1){n.textContent='1';l.textContent='Day to Election Day';}
