@@ -70,6 +70,8 @@ footer{color:var(--muted);font-size:13px;padding-block:8px 32px}
 footer .inner{display:flex;flex-wrap:wrap;gap:6px 18px;justify-content:space-between;border-top:1px solid var(--line);padding-top:16px}
 @media (max-width:560px){.count .n{font-size:44px;min-width:72px}.head{padding-block:30px 26px}.sec small{display:none}}
 @media (prefers-reduced-motion:reduce){a.tool,.open i{transition:none}a.tool:hover{transform:none}}
+a.tool.draft{display:none}
+a.tool.draft .th::after{content:"DRAFT";font:700 9px/1 var(--f-display);letter-spacing:.1em;color:var(--gold);border:1.5px solid var(--gold);border-radius:4px;padding:2px 6px;margin-left:auto}
 </style>
 </head>
 <body>
@@ -114,16 +116,28 @@ footer .inner{display:flex;flex-wrap:wrap;gap:6px 18px;justify-content:space-bet
     <section>
       <div class="sec"><h2>Election night &amp; workflow</h2><small>Tuesday, Nov 7 and ongoing projects</small></div>
       <div class="grid">
-        <a class="tool" href="https://tjholden.github.io/Election-Tracker/">
+        <a class="tool draft" href="https://tjholden.github.io/Election-Tracker/">
           <div class="th"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 3.5h2.6l1.6 4.2-2 1.4a10.5 10.5 0 0 0 6.2 6.2l1.4-2 4.2 1.6v2.6a2 2 0 0 1-2 2A15.5 15.5 0 0 1 4.5 5.5a2 2 0 0 1 2-2z"/></svg></span><h3>Election Night Outreach Tracker</h3></div>
           <p>Every House race and Republican candidate, who's been contacted, results as they're called, and shared team notes.</p>
           <div class="tags"><span>Team sync</span><span>Message templates</span><span>CSV export</span></div>
           <div class="open">Open <i aria-hidden="true">→</i></div>
         </a>
-        <a class="tool" href="https://tjholden.github.io/workflow-board/">
+        <a class="tool draft" href="https://tjholden.github.io/workflow-board/">
           <div class="th"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="5" height="16" rx="1.2"/><rect x="9.5" y="4" width="5" height="11" rx="1.2"/><rect x="16" y="4" width="5" height="13" rx="1.2"/></svg></span><h3>Workflow Board</h3></div>
           <p>Track data projects through each stage, with the people on every card, spreadsheet import and CSV or JSON backups.</p>
           <div class="tags"><span>Stage columns</span><span>Swimlanes</span><span>CSV import/export</span></div>
+          <div class="open">Open <i aria-hidden="true">→</i></div>
+        </a>
+        <a class="tool draft" href="https://ry-hq.vercel.app/hq">
+          <div class="th"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg></span><h3>RY HQ</h3></div>
+          <p>Headquarters dashboard — state delegations, member tracking, and caucus management tools.</p>
+          <div class="tags"><span>Delegations</span><span>Member data</span><span>Filters</span></div>
+          <div class="open">Open <i aria-hidden="true">→</i></div>
+        </a>
+        <a class="tool draft" href="https://tjholden.github.io/fec-dashboard/">
+          <div class="th"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v8l4-2M12 10l-4-2"/><rect x="3" y="12" width="18" height="9" rx="1.5"/><path d="M7 15.5h3M14 15.5h3M7 18h10"/></svg></span><h3>FEC Fundraising Dashboard</h3></div>
+          <p>National Republican caucus fundraising tracker — live FEC data, congressional district maps, quarterly filings, and head-to-head comparisons. Replaces manual spreadsheet tracking.</p>
+          <div class="tags"><span>Live FEC API</span><span>All 50 states</span><span>Quarterly detail</span><span>CSV export</span></div>
           <div class="open">Open <i aria-hidden="true">→</i></div>
         </a>
       </div>
@@ -132,6 +146,20 @@ footer .inner{display:flex;flex-wrap:wrap;gap:6px 18px;justify-content:space-bet
 </main>
 
 <footer class="pad"><div class="inner"><span>Rudy for Indiana · Team Tools</span><span>Questions or ideas? Ask Tyler.</span></div></footer>
+<script>
+// Dev mode: add ?dev=1 to the URL to show draft tools
+var isDev=new URLSearchParams(window.location.search).get("dev")==="1";
+if(isDev){
+  document.querySelectorAll("a.tool.draft").forEach(function(el){el.style.display=""});
+}else{
+  // Hide sections where all tools are drafts
+  document.querySelectorAll("section").forEach(function(sec){
+    var tools=sec.querySelectorAll("a.tool");
+    var visible=sec.querySelectorAll("a.tool:not(.draft)");
+    if(tools.length>0&&visible.length===0)sec.style.display="none";
+  });
+}
+</script>
 
 <script>
 (function(){
