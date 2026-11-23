@@ -71,6 +71,14 @@ footer .inner{display:flex;flex-wrap:wrap;gap:6px 18px;justify-content:space-bet
 @media (max-width:560px){.count .n{font-size:44px;min-width:72px}.head{padding-block:30px 26px}.sec small{display:none}}
 @media (prefers-reduced-motion:reduce){a.tool,.open i{transition:none}a.tool:hover{transform:none}}
 a.tool.draft{display:none}
+.howto{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:20px}
+.howto p.lead{margin:0 0 14px;color:var(--muted);font-size:14.5px}
+.howto .cols{display:grid;grid-template-columns:1fr;gap:16px}
+@media (min-width:680px){.howto .cols{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:980px){.howto .cols{grid-template-columns:repeat(4,1fr)}}
+.howto h3{font-size:16px;margin:0 0 6px}
+.howto ol{margin:0;padding-left:20px;font-size:14.5px;line-height:1.55}
+.howto li+li{margin-top:3px}
 a.tool.draft .th::after{content:"DRAFT";font:700 9px/1 var(--f-display);letter-spacing:.1em;color:var(--gold);border:1.5px solid var(--gold);border-radius:4px;padding:2px 6px;margin-left:auto}
 </style>
 </head>
@@ -128,10 +136,10 @@ a.tool.draft .th::after{content:"DRAFT";font:700 9px/1 var(--f-display);letter-s
           <div class="tags"><span>Stage columns</span><span>Swimlanes</span><span>CSV import/export</span></div>
           <div class="open">Open <i aria-hidden="true">→</i></div>
         </a>
-        <a class="tool draft" href="https://ry-hq.vercel.app/hq">
+        <a class="tool" href="https://ry-hq.vercel.app/hq">
           <div class="th"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg></span><h3>RY HQ</h3></div>
-          <p>Headquarters dashboard — state delegations, member tracking, and caucus management tools.</p>
-          <div class="tags"><span>Delegations</span><span>Member data</span><span>Filters</span></div>
+          <p>The team's board for every House member: contacts, RY notes, Chiefs of Staff, groups and committees, and messages from Rudy.</p>
+          <div class="tags"><span>Members</span><span>RY notes</span><span>HQ sign-in</span></div>
           <div class="open">Open <i aria-hidden="true">→</i></div>
         </a>
         <a class="tool draft" href="https://fec-dashboard-inky.vercel.app/">
@@ -140,6 +148,19 @@ a.tool.draft .th::after{content:"DRAFT";font:700 9px/1 var(--f-display);letter-s
           <div class="tags"><span>Live FEC API</span><span>All 50 states</span><span>Quarterly detail</span><span>CSV export</span></div>
           <div class="open">Open <i aria-hidden="true">→</i></div>
         </a>
+      </div>
+    </section>
+
+    <section>
+      <div class="sec"><h2>Put a tool on your phone</h2><small>A home-screen button, like an app</small></div>
+      <div class="howto">
+        <p class="lead">Open the tool first (for RY HQ, sign in or open your private link), then:</p>
+        <div class="cols">
+          <div><h3>iPhone · Safari</h3><ol><li>Tap <b>Share</b> (the square with the arrow pointing up).</li><li>Scroll down, tap <b>Add to Home Screen</b>.</li><li>Tap <b>Add</b>.</li></ol></div>
+          <div><h3>iPhone · Chrome or Firefox</h3><ol><li>Chrome: tap <b>Share</b> next to the address. Firefox: tap <b>☰</b>, then <b>Share</b>.</li><li>Tap <b>Add to Home Screen</b>.</li><li>Tap <b>Add</b>.</li></ol></div>
+          <div><h3>Android · Chrome</h3><ol><li>Tap the <b>⋮</b> menu (top right).</li><li>Tap <b>Add to Home screen</b> (or <b>Install app</b>).</li><li>Tap <b>Add</b>.</li></ol></div>
+          <div><h3>Android · Firefox</h3><ol><li>Tap the <b>⋮</b> menu.</li><li>Tap <b>Add app to Home screen</b> (or <b>Add to Home screen</b>).</li><li>Tap <b>Add</b>.</li></ol></div>
+        </div>
       </div>
     </section>
   </div>
