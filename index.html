@@ -73,9 +73,7 @@ footer .inner{display:flex;flex-wrap:wrap;gap:6px 18px;justify-content:space-bet
 a.tool.draft{display:none}
 .howto{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:20px}
 .howto p.lead{margin:0 0 14px;color:var(--muted);font-size:14.5px}
-.howto .cols{display:grid;grid-template-columns:1fr;gap:16px}
-@media (min-width:680px){.howto .cols{grid-template-columns:repeat(2,1fr)}}
-@media (min-width:980px){.howto .cols{grid-template-columns:repeat(4,1fr)}}
+.howto .cols{display:grid;grid-template-columns:1fr;gap:16px;max-width:520px}
 .howto h3{font-size:16px;margin:0 0 6px}
 .howto ol{margin:0;padding-left:20px;font-size:14.5px;line-height:1.55}
 .howto li+li{margin-top:3px}
@@ -157,9 +155,6 @@ a.tool.draft .th::after{content:"DRAFT";font:700 9px/1 var(--f-display);letter-s
         <p class="lead">Open the tool first (for RY HQ, sign in or open your private link), then:</p>
         <div class="cols">
           <div><h3>iPhone · Safari</h3><ol><li>Tap <b>Share</b> (the square with the arrow pointing up).</li><li>Scroll down, tap <b>Add to Home Screen</b>.</li><li>Tap <b>Add</b>.</li></ol></div>
-          <div><h3>iPhone · Chrome or Firefox</h3><ol><li>Chrome: tap <b>Share</b> next to the address. Firefox: tap <b>☰</b>, then <b>Share</b>.</li><li>Tap <b>Add to Home Screen</b>.</li><li>Tap <b>Add</b>.</li></ol></div>
-          <div><h3>Android · Chrome</h3><ol><li>Tap the <b>⋮</b> menu (top right).</li><li>Tap <b>Add to Home screen</b> (or <b>Install app</b>).</li><li>Tap <b>Add</b>.</li></ol></div>
-          <div><h3>Android · Firefox</h3><ol><li>Tap the <b>⋮</b> menu.</li><li>Tap <b>Add app to Home screen</b> (or <b>Add to Home screen</b>).</li><li>Tap <b>Add</b>.</li></ol></div>
         </div>
       </div>
     </section>
